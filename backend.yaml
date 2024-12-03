@@ -45,6 +45,13 @@
     ansible.builtin.copy:
       src: backend.service
       dest: /etc/systemd/system/backend.service
+
+  - name: ansible to install boto3 and botocore
+    ansible.builtin.pip:
+      name:
+      - PyMySQL
+      executable: pip3.9
+      
   - name: import mysql data
     community.mysql.mysql_db:
       login_user: root
@@ -53,8 +60,4 @@
       target: /app/schema/backend.sql
       state: dump  #dump means import
       name: all 
-  - name: ansible to install boto3 and botocore
-    ansible.builtin.pip:
-      name:
-      - PyMySQL
-      executable: pip3.9
+  
