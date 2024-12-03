@@ -60,4 +60,8 @@
       target: /app/schema/backend.sql
       state: import #dump means import
       name: all 
-  
+  - name: daemon reload
+    ansible.builtin.systemd_service:
+      daemon_reload: true
+      state: restarted
+      name: backend
